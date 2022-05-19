@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: sqyards-fe
+  name: sqyards-fe
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: sqyards-fe
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: sqyards-fe
+    spec:
+      containers:
+      - image: nginx
+        name: sq-fe
+        ports:
+          - containerPort: 8888
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
+
+status: {}

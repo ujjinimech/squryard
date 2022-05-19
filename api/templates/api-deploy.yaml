@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: sqyards-api
+  name: sqyards-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sqyards-api
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: sqyards-api
+    spec:
+      containers:
+      - image: nginx
+        name: sq-api
+        ports:
+          - containerPort: 8081
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
+        volumeMounts:
+        - name: api-config
+          mountPath: /docker/config
+      volumes:
+      - name: api-config
+        configMap:
+          name: api-conf
+status: {}

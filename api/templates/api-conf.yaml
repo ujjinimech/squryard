@@ -1,0 +1,159 @@
+apiVersion: v1
+data:
+  config.js: "// read environment variable\nconst env = process.env.SQY_REDESIGN_ENV
+    || 'development';\nconst port = process.env.FE_PORT || 8888;\nconst apiPort =
+    process.env.API_PORT || 8081;\nconst devConfig = {\n    environment: \"development\",\n
+    \   port: port,\n    s_active_type:{\n        newP:'new-projects',\n        sale:'sale',\n
+    \       rent:'rent',\n        homeLoan:'homeLoan',\n        homeInterior:'homeInterior',\n
+    \       propertyManagement:'propertyManagement',\n        colive:'co-living',\n
+    \       agents:'agents'\n    },\n    redis:{\n        port:6379,\n        host:'redis',\n
+    \       session_host: \"redis\",\n        session_port: 6379\n    },\n    propAmcApi:{\n
+    \       header :{\n            apiuser:\"sqy-staging\",\n            apikey :
+    \"0a5f8adbf6f34b4a95ee8e09846f65c6\"\n        },\n        url : \"https://apistaging.propsamc.com/zoning/transactions-v2/\",\n
+    \       propamcRecord : \"/getSalePropamcRecord\"\n    },\n    galaktic_search:{\n
+    \       active:true,\n        searchApi:{\n            headers:{\n                \"Content-Type\":
+    \"application/json\",\n                \"id\":\"squareyards\"\n            },\n
+    \           url:\"https://app1.square-global.com:8443/web-b2c/open/search/v1.0/auto-suggestion\"\n
+    \       },\n        baseUrl:\"https://app1.square-global.com:8443/\",\n        trackingBaseUrl:\"https://app2.square-global.com/\",\n
+    \       trendingKeywords : \"/trending_keywords\",\n        recentKeywords : \"/recent_keywords\"\n
+    \   },\n    promoVideos:{\n        'home-html': \"https://sqconnect.s3.ap-south-1.amazonaws.com/mailers/mandira-bedi-ads/mandira-bedi-ads.mp4\",\n
+    \       'home-youtube': \"https://www.youtube.com/embed/vBic1X9ihtw\",\n        'url-knowmore':
+    \"https://www.youtube.com/watch?v=vBic1X9ihtw\"\n    },\n    apiDetails: {  \n
+    \       \"SquareYardsAPI\": {\n            // url: `http://redesign.squareyards.com:${apiPort}/`
+    \n            url: `http://localhost:${apiPort}/` \n        },\n        \"CoLivingAPI\":{\n
+    \           url: `http://uat-syol.squareyards.com/` \n        },\n        \"BeatsAPI\":
+    {\n            url: 'http://beatsdemo.squareyards.com/api/',\n            key:
+    'uAqGJ6bvNqcqsxh4TXMRHP596adeEMLVomMZywp1U0VHUeHLwHxv5jbe5Aw8=',\n            pdf_api:
+    'PDFConverter/ConvertToPDF',\n            pdf_url: 'https://s3-ap-southeast-1.amazonaws.com/sqy/testing/PDFHTML/',\n
+    \           doc_list_api: 'ProjectKnowledge/GetProjectDocuments',\n            doc_list_mail_api:
+    'ProjectKnowledge/MarketingCollateralEmailDotCom',\n            doc_list_mail_access_code:
+    '3AHR16K5HSs3Abhr0Jyvnso62v5Rt505amb7G3Jxw'\n        }, \n        \"LmsAPI\":{\n
+    \           url: \"https://api-lms.squareyards.com/\"\n        },\n        \"BlogApi\":
+    {\n            url: \"https://www.squareyards.com/\"\n        },\n        \"InteriorApi\":
+    {\n            url: \"https://interior-uat.squareyards.com/api/\"\n        },\n
+    \       \"urbanMoneyAPI\": {\n            url: \"https://core-uat.squarecapital.co.in/\"\n
+    \       },\n        \"PWA\": {\n            redirecturl:'http://m-uat.squareyards.com/',\n
+    \           login: \"http://capp-services-uat.squareyards.com/api/user/login/generate-token/\",\n
+    \           cappservicesurl:'http://capp-services-uat.squareyards.com/api/home/loggedin-info',\n
+    \           cappurl:'http://beatsdemo.squareyards.com/api/v2/Lead/CreateCappProfile',\n
+    \           apiKey: \"uAqGJ6bvNqcqsxh4TXMRHP596adeEMLVomMZywp1U0VHUeHLwHxv5jbe5Aw8=\",\n
+    \           env: 'uat',\n            agentRatingUrl: \"http://capp-services-uat.squareyards.com/api/agent/save-agent-rating\",\n
+    \           rmFeedback: {\n                0\t:  {'title': 'Polite, courteous
+    & professional', 'value':'.15'},\n                1\t:  {'title': 'Answered all
+    my queries to my satisfaction', 'value':'.25'},\n                2\t:  {'title':
+    'Clear communication/ Good listening skills', 'value':'.10'},\n                3\t:
+    \ {'title': 'Responsible & punctual', 'value':'.10'},\n                4\t:  {'title':
+    'Unfriendly or unprofessional', 'value':'.50'},\n                5\t:  {'title':
+    'Couldn\\'t answer my queries', 'value':'.20'},\n                6\t:  {'title':
+    'Unclear communication/ Bad listening skills', 'value':'.20'},\n                7\t:
+    \ {'title': 'Unresponsive/ Late for meeting', 'value':'.30'},\n                99\t:
+    \ {'title': 'Other/ Reason not listed', 'value':'0'}\n            },\n            rmRating:
+    [\n                { id: 5, title: 'Amazing', 'type':'positive', 'icon':'', 'otp':'',
+    'value':5, 'feedback': {1:[0,1,2,99], 2:[0,1,3,99], 3:[0,1,3,99]} },\n                {
+    id: 4, title: 'Good', 'type':'positive', 'icon':'', 'otp':'', 'value':4, 'feedback':
+    {1:[0,1,2,99], 2:[0,1,3,99], 3:[0,1,3,99]} },\n                { id: 3, title:
+    'Average', 'type':'negative', 'icon':'', 'otp':'', 'value':3, 'feedback': {1:[4,5,6,99],
+    2:[4,5,7,99], 3:[4,5,7,99]} },\n                { id: 2, title: 'Bad', 'type':'negative',
+    'icon':'', 'otp':'', 'value':2, 'feedback': {1:[4,5,6,99], 2:[4,5,7,99], 3:[4,5,7,99]}
+    },\n                { id: 1, title: 'Awful', 'type':'negative', 'icon':'', 'otp':'',
+    'value':1, 'feedback': {1:[4,5,6,99], 2:[4,5,7,99], 3:[4,5,7,99]} },\n            ]\n
+    \       },\n        \"capital\": {\n            myLoansLoginUrl: \"http://core-dev.squarecapital.co.in/\",\n
+    \           accessToken: \"8df050ff-a954-4348-b407-0de2f42ab1b0\",\n            myLoansIframeUrl:
+    \"http://loans-test.squareyards.com/\"\n        }\n    },\n    amp:{\n        \"baseUrl\":
+    \"http://localhost:8888/amp/\"\n    },\n    map3DCities: [\"noida\" ,\"gurgaon\",\"mumbai\",\"pune\",\"bangalore\",\"hyderabad\",\"kolkata\",\"lucknow\",\"jaipur\",\"goa\",\"ahmedabad\",\"delhi\"],\n
+    \   DSEPopup:{\n        \"timer\":60000\n    },\n    \"ratingColourScheme\":{\n
+    \       \"1\":\"red\",\n        \"2\":\"red\",\n        \"3\":\"red\",\n        \"4\":\"red\",\n
+    \       \"5\":\"yellow\",\n        \"6\":\"yellow\",\n        \"7\":\"green\",\n
+    \       \"8\":\"green\",\n        \"9\":\"green\",\n        \"10\":\"green\",\n
+    \   },\n    \"captchaKey\":{\n        \"public\": \"6LciPrkUAAAAACC6__YHCekzN4dik2k-4VMqTIKX\",\n
+    \       \"secret\": \"6LciPrkUAAAAAMJzfBb_IUQ4gaYcoVP6I6VR3iUQ\"\n    },\n    dubaiAreaAttrubuteIds:
+    [19,20,21,22],\n    indiaAreaAttrubuteIds: [24,25,27,28],\n    \"jwtCredentials\":{\n
+    \       \"JWT_AES_KEY\": \"jwt@123\",\n        \"JWT_AES_SALT\": \"jwt.sqyrd\"\n
+    \   },\n    \"listingCities\":[3,4,5,6,8,9,11,59,72],\n    \"colivingCities\":[1,17],\n
+    \   \"dotcomToConnectLocation\": {\n        \"1\": 59, //gurgaon\n        \"2\":
+    4, //delhi\n        \"3\": 29, //faridabad\n        \"4\": 72, //noida\n        \"9\":
+    23, //Ghaziabad\n        \"10\": 5, //Bangalore\n        \"12\": 11, //Pune\n
+    \       \"13\": 3, //Mumbai\n        \"14\": 8, //Chennai\n        \"15\": 6,
+    //Hyderabad\n        \"16\": 289, //Ahmedabad\n        \"17\": 9, //Kolkata\n
+    \       \"18\": 13, //Lucknow\n        \"19\": 309, //Chandigarh\n        \"20\":
+    313, //Dehradun\n        //\"21\": \"Bhubaneswar\", //Bhubaneswar\n        \"22\":
+    351, //Goa\n        \"23\": 359, //Rajkot\n        \"24\": 305, //Bhopal\n        //\"25\":
+    \"Guwahati\", //Guwahati\n        \"26\": 355, //Patna\n        \"27\": 12, //Jaipur\n
+    \       //\"28\": \"Varanasi\", //Varanasi\n        \"29\": 16, //Vizag\n        \"30\":
+    45, //Vijayawada\n        \"31\": 302, //Bareilly\n        \"32\": 342, //Meerut\n
+    \       \"33\": 293, //Allahabad\n        \"34\": 288 //Agra\n    },\n    lmsApi:`http://api-lms.squareyards.com/index.php/v6/FiveMinCallBack`,\n
+    \   lmsCountryLocationURL:`https://sqy.s3-ap-southeast-1.amazonaws.com/pwa/country-location.json`,\n
+    \   projectBudgetRangeURL:`https://api.squareyards.com/SquareYards/site/DseQuestion/`,\n
+    \   urls: {\n        \"baseUrl\": \"http://localhost:8888/\",\n        \"slElasticUrl\":
+    \"http://localhost:8181/\",\n        \"imgResourceUrl\": \"https://img.squareyards.com/\",\n
+    \       \"staticResourceUrl\": \"https://static.squareyards.com/\",\n        \"httpStaticResourceUrl\":
+    \"http://static.squareyards.com/\",\n        \"imageUrl\": \"https://static.squareyards.com/resources/images/\",\n
+    \       \"esurl\":\"https://search-search-sqyuat-zpiq6t37xse53g55dhisebcipa.ap-southeast-1.es.amazonaws.com/\",\n
+    \       \"cmaApiUrl\":\"http://uat-cma.squareyards.com/api/\",\n        \"capitalApiUrl\":
+    \"https://uat.squarecapital.co.in/Api/\",\n        \"s3Url\": \"https://s3-ap-southeast-1.amazonaws.com/sqy/\",\n
+    \       \"captchaV3VerifyUrl\": \"https://www.google.com/recaptcha/api/siteverify\",\n
+    \       \"askUrl\": \"https://redesign.squareyards.com/ask\",\n        \"escrowUrl\":
+    \"https://uat-escrow.squareyards.com/\",\n        \"propsAmcUrl\":\"https://propsamc.com/\",\n
+    \       \"squareCapitalUrl\":\"https://www.squarecapital.co.in/\",\n        \"squareConnectUrl\":\"https://www.squareconnect.in\",\n
+    \       \"edgeUrl\":\"http://getedge.tech/\",\n        \"capitalBlogsUrl\": \"https://cms.squareyards.com/capital/latestBlog\",\n
+    \       \"azuroUrl\":\"https://www.squarecapital.co.in/check-credit-score/\",\n
+    \       \"escrowMoney\": 'https://uat-escrowmoney.squareyards.com/',\n    },\n
+    \   shareTags: {\n        \"facebook\": \"https://www.facebook.com/sharer/sharer.php?u=<PageURL>&text=<PageMetaTitle>\",\n
+    \       \"twitter\": \"https://twitter.com/intent/tweet?text=<PageMetaTitle>&url=<PageURL>\",\n
+    \       \"linkedin\": \"https://www.linkedin.com/sharing/share-offsite?url=<PageURL>&text=<PageMetaTitle>\",\n
+    \       \"pinterest\": \"https://pinterest.com/pin/create/button/?url=<PageURL>&text=<PageMetaTitle>\",\n
+    \       \"whatsapp\": \"https://api.whatsapp.com/send?text=<PageURL>\"\n    },\n
+    \   zoomLevel:{\n        \"CITY\":11,\n        \"LOCATION\":12,\n        \"SUBLOCATION\":14\n
+    \   },\n    map:{\n        defaultNotOpen:['dse-rent','dse-sale']\n    },\n    resaleRentalSitemapFeedURL:
+    '/Sqyrd-node/sqyredesign-v2/',\n    azuro:{\n        url:'https://api.azuro.in/v1/public/owner_leads.json',\n
+    \       source:'Square Yards Website'\n    },\n    emiCalculatorValues: {\n        amount:
+    {\n            min: 50000,\n            max: 10000000,\n            default: 100000,\n
+    \           step: 1000\n        },\n        tenure: {\n            min: 1,\n            max:
+    30,\n            default: 20\n        },\n        rate: {\n            min: 6,\n
+    \           max: 20,\n            default: 7,\n            step: 0.01\n        }\n
+    \   },\n    eligibilityCalculatorValues: {\n        age: {\n            min: 20,\n
+    \           max: 58,\n            default: 35\n        },\n        income: {\n
+    \           min: 20000,\n            max: 500000,\n            default: 100000,\n
+    \           step: 1000\n        },\n        emi: {\n            min: 0,\n            max:
+    200000,\n            default: 15000,\n            step: 1000\n        },\n        tenure:
+    {\n            min: 1,\n            max: 30,\n            default: 20\n        },\n
+    \       retirementAge: 58,\n        baseInterestRate: 7\n    },\n    emiCalculatorValuesDubai:
+    {\n        amount: {\n            min: 50000,\n            max: 1000000,\n            default:
+    500000,\n            step: 1000\n        },\n        tenure: {\n            min:
+    1,\n            max: 30,\n            default: 20\n        },\n        rate: {\n
+    \           min: 2,\n            max: 20,\n            default: 2.5,\n            step:
+    0.01\n        }\n    },\n    eligibilityCalculatorValuesDubai: {\n        age:
+    {\n            min: 20,\n            max: 58,\n            default: 35\n        },\n
+    \       income: {\n            min: 5000,\n            max: 50000,\n            default:
+    10000,\n            step: 100\n        },\n        emi: {\n            min: 0,\n
+    \           max: 10000,\n            default: 1000,\n            step: 100\n        },\n
+    \       tenure: {\n            min: 1,\n            max: 30,\n            default:
+    20\n        },\n        retirementAge: 58,\n        baseInterestRate: 2.5\n    },\n
+    \   googleMapKey:'AIzaSyDBwlGeCZ22sn-cv5-yhqoecB2yUu4H4Cs',\n    azuroDetails:
+    {\n        id: 197541,\n        userType: 'CP',\n        listingType: {\n            rent:
+    \"Rent\",\n            sale: \"Sale\"\n        }\n    },\n    sessionPath: './rsdb',\n\tcorsAllow:
+    ['http://localhost:8888'],\n\tcorsOrigin: 'http://localhost:8888'\n}\nconst prodConfig
+    = {\n\tenvironment: 'production',\n\tport,\n\tapiDetails: {\n\t\tSquareYardsAPI:
+    {\n\t\t\t// url: `http://redesign.squareyards.com:${apiPort}/`\n\t\t\turl: `http://localhost:${apiPort}/`\n\t\t},\n\t\tBeatsAPI:
+    {\n\t\t\turl: 'http://beatsdemo.squareyards.com/api/',\n\t\t\tkey: 'uAqGJ6bvNqcqsxh4TXMRHP596adeEMLVomMZywp1U0VHUeHLwHxv5jbe5Aw8=',\n\t\t\tpdf_api:
+    'PDFConverter/ConvertToPDF',\n\t\t\tpdf_url: 'https://s3-ap-southeast-1.amazonaws.com/sqy/testing/PDFHTML/',\n\t\t\tdoc_list_api:
+    'ProjectKnowledge/GetProjectDocuments',\n\t\t\tdoc_list_mail_api: 'ProjectKnowledge/MarketingCollateralEmailDotCom',\n\t\t\tdoc_list_mail_access_code:
+    '3AHR16K5HSs3Abhr0Jyvnso62v5Rt505amb7G3Jxw'\n\t\t},\n\t\tBlogApi: {\n\t\t\turl:
+    'https://www.squareyards.com/'\n\t\t}\n\t},\n\tlmsApi: 'http://api-lms.squareyards.com/index.php/v6/FiveMinCallBack',\n\tlmsCountryLocationURL:
+    'https://sqy.s3-ap-southeast-1.amazonaws.com/pwa/country-location.json',\n\tprojectBudgetRangeURL:
+    'https://api.squareyards.com/SquareYards/site/DseQuestion/',\n\turls: {\n\t\tbaseUrl:
+    'https://www.squareyards.com/',\n\t\tstaticResourceUrl: 'https://static.squareyards.com/',\n\t\thttpStaticResourceUrl:
+    'http://static.squareyards.com/',\n\t\timageUrl: 'https://static.squareyards.com/resources/images/',\n\t\tesurl:
+    'https://search-sqyprod-rcddosg3smglizeb4ggsjhgajy.ap-southeast-1.es.amazonaws.com/'\n\t},\n\tshareTags:
+    {\n\t\tfacebook: 'https://www.facebook.com/sharer/sharer.php?u=<PageURL>&text=<PageMetaTitle>',\n\t\ttwitter:
+    'https://twitter.com/intent/tweet?text=<PageMetaTitle>&url=<PageURL>',\n\t\tlinkedin:
+    'https://www.linkedin.com/shareArticle?mini=true&url=<PageURL>&text=<PageMetaTitle>',\n\t\tpinterest:
+    'https://pinterest.com/pin/create/button/?url=<PageURL>&text=<PageMetaTitle>',\n\t\twhatsapp:
+    'https://whatsapp://send?text=<PageURL>'\n\t},\n\tcityFreezeDomains: [\n\t\t'www.squareyards.ae',\n
+    \       \"localhost\",\n        \"localhost:8888\"\n\t]\n};\n// added comments
+    for checking if .gitattributes is working test 2\nconst config = {\n\tdevelopment:
+    devConfig,\n\tproduction: prodConfig\n};\nmodule.exports = config[env];\n"
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: api-conf

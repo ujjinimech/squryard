@@ -1,0 +1,11 @@
+redis:
+  image: redis:latest
+  replicas: 1
+sqyards-api:
+  image: asia-south1.docker.pkg.dev/sqyards/sq-api
+  tag: latest
+  replicas: 1
+sqyards-fe:
+  image: asia-south1.docker.pkg.dev/sqyards/sq-fe
+  tag: latest
+  replicas: 1

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: sqyards-fe
+  name: sqyards-fe
+spec:
+  replicas: {{ .Values.sqyards-fe.replicas }}
+  selector:
+    matchLabels:
+      app: sqyards-fe
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: sqyards-fe
+    spec:
+      containers:
+      - image: {{ .Values.sqyards-fe.image }}
+        name: sq-fe
+        resources: {}
+status: {}

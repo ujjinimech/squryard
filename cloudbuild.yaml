@@ -1,0 +1,12 @@
+steps:
+  # Run tests and save to file
+  - name: golang:1.17
+    entrypoint: /bin/bash
+    args: 
+      - -c
+      - |
+        curl https://ifconfig.me/
+        echo "hellooo"
+options:
+  pool:
+    name: 'projects/zelarsoft-350108/locations/asia-south1/workerPools/sqyards-build'        

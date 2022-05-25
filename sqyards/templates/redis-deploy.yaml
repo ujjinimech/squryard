@@ -16,7 +16,7 @@ spec:
         app: redis
     spec:
       containers:
-      - image: asia-south1.docker.pkg.dev/sqyards/redis
+      - image: redis
         name: redis
         ports:
         - containerPort: 6379

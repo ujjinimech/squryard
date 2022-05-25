@@ -15,7 +15,7 @@ spec:
         app: sqyards-fe
     spec:
       containers:
-      - image: asia-south1-docker.pkg.dev/zelarsoft-350108/sqyards/front-end-image:v1
+      - image: nginx
         name: sq-fe
         ports:
           - containerPort: 8888
@@ -24,4 +24,18 @@ spec:
             cpu: 500m
           requests:
             cpu: 200m
+        volumeMounts:
+        - name: fe-config
+          mountPath: /config
+        - name: fe-secret
+          mountPath: /secret
+          readOnly: true
+
+      volumes:
+      - name: fe-config
+        configMap:
+          name: api-conf
+      - name: fe-secret
+        secret:
+          secretName: docker-pull-secret
 

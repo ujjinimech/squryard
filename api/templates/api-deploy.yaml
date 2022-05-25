@@ -30,8 +30,14 @@ spec:
         volumeMounts:
         - name: api-config
           mountPath: /docker/config
+        - name: api-secret
+          mountPath: /secret
+          readOnly: true
+
       volumes:
       - name: api-config
         configMap:
           name: api-conf
-status: {}
+       - name: api-secret
+         secret:
+           secretName: docker-pull-secret

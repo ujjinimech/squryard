@@ -15,7 +15,7 @@ spec:
         app: sqyards-api
     spec:
       containers:
-      - image: asia-south1-docker.pkg.dev/zelarsoft-350108/sqyards/api-image:v1
+      - image: nginx
         name: sq-api
         ports:
           - containerPort: 8081
@@ -27,7 +27,14 @@ spec:
         volumeMounts:
         - name: api-config
           mountPath: /docker/config
+        - name: api-secret
+          mountPath: /secret
+          readOnly: true
       volumes:
       - name: api-config
         configMap:
           name: api-conf
+      - name: api-secret
+        secret:
+          secretName: docker-pull-secret
+
